@@ -48,10 +48,7 @@
 
 ## 🔒 Accès admin (démo)
 
-- **Email** : admin@eden.com  
-- **Mot de passe** : admin123
-
----
+- **Email** : admin@eden.com
 
 ## 💡 Auteur
 
