@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boutique Eden1</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      color: #3d9970;
+    }
+    .produits {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .produit {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .produit img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    button {
+      background: #3d9970;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Boutique de Eden1</h1>
+    <button onclick="window.location.href='boutique.html'">← Retour</button>
+  </header>
+
+  <div class="produits">
+    <div class="produit">
+      <img src="https://via.placeholder.com/200x140" />
+      <h4>Chaussures en toile</h4>
+      <p>Prix : 28 $</p>
+      <button onclick="window.location.href='produit.html'">Voir</button>
+    </div>
+    <div class="produit">
+      <img src="https://via.placeholder.com/200x140" />
+      <h4>Casquette Eden</h4>
+      <p>Prix : 15 $</p>
+      <button onclick="window.location.href='produit.html'">Voir</button>
+    </div>
+  </div>
+</body>
+</html>

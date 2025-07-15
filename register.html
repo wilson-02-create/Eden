@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscription - Eden</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .register-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button, select {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    button {
+      background: #3d9970;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>Créer un compte Eden</h2>
+    <input type="text" id="nom" placeholder="Nom de l'utilisateur" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Mot de passe" required />
+    <select id="role">
+      <option value="vendeur">Vendeur</option>
+      <option value="admin">Administrateur</option>
+    </select>
+    <button onclick="enregistrer()">S'inscrire</button>
+  </div>
+
+  <script>
+    function enregistrer() {
+      const nom = document.getElementById("nom").value;
+      const email = document.getElementById("email").value;
+      const role = document.getElementById("role").value;
+      alert(`Compte ${role} créé avec succès : ${nom}`);
+      if (role === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        window.location.href = "dashboard.html";
+      }
+    }
+  </script>
+</body>
+</html>

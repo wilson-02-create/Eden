@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  margin: 0;
+  font-family: sans-serif;
+  background: #f0f0f0;
+}
+.sidebar {
+  width: 220px;
+  background: #222;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+.sidebar .logo {
+  width: 60px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+.sidebar h2 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+.tab {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}

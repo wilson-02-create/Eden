@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#3d9970">
+  <title>Eden Marketplace</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Eden Logo" class="logo" />
+    <nav>
+      <input type="text" id="searchBar" placeholder="Rechercher un produit..." />
+      <button id="btnPanier">🛒</button>
+      <button id="btnConnexion">🔐</button>
+    </nav>
+  </header>
+
+  <main>
+    <h2>🛍️ Produits en vedette</h2>
+    <section id="produitsVedettes"></section>
+
+    <h2>🏬 Boutiques</h2>
+    <section id="boutiques"></section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Eden | Powered by Jewson</p>
+  </footer>
+  <link rel="manifest" href="manifest.json" />
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('✅ Service Worker enregistré'))
+      .catch(err => console.error('❌ Service Worker erreur', err));
+  }
+</script>
+</body>
+</html>

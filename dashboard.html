@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tableau de bord - Eden</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script defer src="dashboard.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="logo.png" class="logo" />
+    <h2>Boutique Eden</h2>
+    <ul>
+      <li onclick="afficher('produits')">🛍️ Produits</li>
+      <li onclick="afficher('commandes')">📦 Commandes</li>
+      <li onclick="afficher('stats')">📊 Statistiques</li>
+      <li onclick="afficher('profil')">👤 Profil</li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div id="produits" class="tab">
+      <h2>Mes Produits</h2>
+      <form onsubmit="ajouterProduit(event)">
+        <input type="text" id="nomProduit" placeholder="Nom" required />
+        <input type="number" id="prixProduit" placeholder="Prix" required />
+        <button>Ajouter</button>
+      </form>
+      <ul id="listeProduits"></ul>
+    </div>
+
+    <div id="commandes" class="tab" style="display:none">
+      <h2>Commandes</h2>
+      <ul>
+        <li>Client A - T-shirt Eden - En attente</li>
+        <li>Client B - Sac Bio - Livré</li>
+      </ul>
+    </div>
+
+    <div id="stats" class="tab" style="display:none">
+      <h2>Statistiques des visiteurs</h2>
+      <ul>
+        <li>📅 Aujourd'hui : <span id="visitesJour">0</span></li>
+        <li>🗓️ Cette semaine : <span id="visitesSemaine">0</span></li>
+        <li>🗓️ Ce mois-ci : <span id="visitesMois">0</span></li>
+        <li>📆 Cette année : <span id="visitesAnnee">0</span></li>
+      </ul>
+    </div>
+
+    <div id="profil" class="tab" style="display:none">
+      <h2>Mon profil</h2>
+      <p>Nom : Boutique Eden</p>
+      <p>Email : eden@boutique.com</p>
+    </div>
+  </div>
+</body>
+</html>
+<button onclick="deconnexion()" style="position: fixed; top: 10px; right: 10px; background: red; color: white; border: none; padding: 10px; border-radius: 4px;">
+  Se déconnecter
+</button>
