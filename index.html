@@ -1,33 +1,228 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eden Marketplace</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDEN App - SPA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #111;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    header h1 { margin: 0; color: #FFA90F; }
+    nav {
+      background-color: #DA0808;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    nav button {
+      padding: 10px;
+      background: none;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background-color: #004d00;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active { display: block; }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .product-card img {
+      width: 100%; height: 150px; object-fit: cover;
+    }
+    .product-card h4 {
+      margin: 10px; font-size: 16px; color: #006400;
+    }
+    form input, form textarea, form select {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border-radius: 8px; border: 1px solid #ccc;
+    }
+    form button {
+      background-color: #006400;
+      color: white; border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .dashboard { margin-top: 20px; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+    .edit { background-color: #006400; }
+    .delete { background-color: #D72638; }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <img src="logo.png" alt="Eden Logo" class="logo" width="60">
-    <input type="text" placeholder="Rechercher un produit..." class="search">
-    <a href="panier.html" class="btn">🛒</a>
-    <a href="login.html" class="btn">🔐</a>
+  <header>
+    <h1>EDEN</h1>
   </header>
+  <nav>
+    <button onclick="showSection('home')">🏠 Accueil</button>
+    <button onclick="showSection('login')">🔐 Connexion</button>
+    <button onclick="showSection('boutique')">🛍 Boutique</button>
+    <button onclick="showSection('dashboard')">📊 Vendeur</button>
+    <button onclick="showSection('admin')">🛡 Admin</button>
+    <button onclick="showSection('articles')">📝 Articles</button>
+  </nav>  <section id="home" class="active">
+    <h2>Produits en vedette</h2>
+    <div class="product-list" id="vedette-list"></div>
+  </section>  <section id="login">
+    <h2>Connexion / Inscription</h2>
+    <form id="form-inscription">
+      <input type="text" placeholder="Nom d'utilisateur" id="username" required>
+      <input type="email" placeholder="Email" id="email" required>
+      <input type="password" placeholder="Mot de passe" id="password" required>
+      <select id="type" required>
+        <option value="">Type de compte</option>
+        <option value="client">Client</option>
+        <option value="vendeur">Vendeur</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button type="submit">S'inscrire</button>
+    </form>
+  </section>  <section id="boutique">
+    <h2>Boutique publique</h2>
+    <div class="product-list" id="boutique-list"></div>
+  </section>  <section id="dashboard">
+    <h2>Tableau de bord Vendeur</h2>
+    <div class="stats-grid">
+      <div class="card">👁 Visites : 154</div>
+      <div class="card">📅 Semaine : 1024</div>
+      <div class="card">🗓 Mois : 4901</div>
+    </div>
+    <h3>Mes produits</h3>
+    <table>
+      <thead><tr><th>Nom</th><th>Prix</th><th>Actions</th></tr></thead>
+      <tbody id="table-prods"></tbody>
+    </table>
+  </section>  <section id="admin">
+    <h2>Administration</h2>
+    <div class="stats-grid">
+      <div class="card">Utilisateurs : 12</div>
+      <div class="card">Vendeurs actifs : 5</div>
+      <div class="card">Produits total : 47</div>
+    </div>
+    <h3>Contrôle vendeur</h3>
+    <table>
+      <thead><tr><th>Nom</th><th>Email</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td>Joseport</td><td>jose@eden.com</td><td>Vendeur</td></tr>
+        <tr><td>Skymaster</td><td>sky@eden.com</td><td>Admin</td></tr>
+      </tbody>
+    </table>
+  </section>  <section id="articles">
+    <h2>Articles communautaires</h2>
+    <form id="form-article">
+      <input type="text" id="titreArticle" placeholder="Titre de l'article" required>
+      <textarea id="contenuArticle" placeholder="Contenu de l'article" rows="5" required></textarea>
+      <button type="submit">Publier</button>
+    </form>
+    <div id="listeArticles"></div>
+  </section>  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
 
-  <main>
-    <section>
-      <h2>🛍️ Produits en vedette</h2>
-      <p>Aucun produit à afficher pour le moment.</p>
-    </section>
+    const produits = [
+      { nom: "Chaussures Sport", prix: "15 000 FCFA", image: "https://i.imgur.com/HxM7jHb.png" },
+      { nom: "Montre Luxe", prix: "22 000 FCFA", image: "https://i.imgur.com/ae5eCWs.png" },
+    ];
 
-    <section>
-      <h2>🏬 Boutiques</h2>
-      <p>Aucune boutique disponible actuellement.</p>
-    </section>
-  </main>
+    const vedetteList = document.getElementById('vedette-list');
+    const boutiqueList = document.getElementById('boutique-list');
+    const tableProds = document.getElementById('table-prods');
 
-  <footer>
-    <p>© 2025 Eden | Powered by Jewson</p>
-  </footer>
-</body>
+    function renderProduits() {
+      vedetteList.innerHTML = '';
+      boutiqueList.innerHTML = '';
+      tableProds.innerHTML = '';
+      produits.forEach((p, i) => {
+        vedetteList.innerHTML += `<div class='product-card'><img src='${p.image}'><h4>${p.nom}</h4></div>`;
+        boutiqueList.innerHTML += `<div class='product-card'><img src='${p.image}'><h4>${p.nom}</h4></div>`;
+        tableProds.innerHTML += `<tr><td>${p.nom}</td><td>${p.prix}</td><td><button class='btn delete' onclick='supprimer(${i})'>🗑</button></td></tr>`;
+      });
+    }
+
+    function supprimer(index) {
+      produits.splice(index, 1);
+      renderProduits();
+    }
+
+    document.getElementById('form-inscription').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const type = document.getElementById('type').value;
+      if (type === 'vendeur') showSection('dashboard');
+      else if (type === 'admin') showSection('admin');
+      else showSection('home');
+    });
+
+    renderProduits();
+
+    const formArticle = document.getElementById('form-article');
+    const listeArticles = document.getElementById('listeArticles');
+
+    formArticle.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const titre = document.getElementById('titreArticle').value;
+      const contenu = document.getElementById('contenuArticle').value;
+
+      const articleHTML = `<div class='card'><h3>${titre}</h3><p>${contenu}</p></div>`;
+      listeArticles.innerHTML = articleHTML + listeArticles.innerHTML;
+      formArticle.reset();
+    });
+  </script></body>
 </html>
